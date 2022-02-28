@@ -1,3 +1,4 @@
+
 const loadPhone = () => {
     const searchField = document.getElementById('input-field');
     const searchValue = searchField.value ;
@@ -12,8 +13,18 @@ const loadPhone = () => {
 
 const displayPhone = phones => {
     const phoneContainer = document.getElementById('phone-container');
+    const detailsPhone = document.getElementById('phone-details');
+    
     phoneContainer.textContent = '';
+    // error handle 
+    if(phones.length === 0){
+        document.getElementById('error-section').style.display = 'block';
+        detailsPhone.textContent = '';
+    }
+    // display function 
+    else{
     phones.forEach(phone =>{
+        document.getElementById('error-section').style.display = 'none';
         // console.log(phone)
         const div = document.createElement('div');
         div.classList.add('col');
@@ -30,6 +41,7 @@ const displayPhone = phones => {
         `
         phoneContainer.appendChild(div);
     })
+    }
 }
 
 const phoneDetails = (info) => {
@@ -38,21 +50,28 @@ const phoneDetails = (info) => {
     .then(response => response.json())
     .then(data => displayDetails(data.data))
 }
-
+// details function 
 const displayDetails = infoId => {
-    // console.log(infoId);
+    console.log(infoId);
     const detailsPhone = document.getElementById('phone-details');
-    detailsPhone.textContent = '';
+    // detailsPhone.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
     <img src="${infoId.image}" class="card-img-top" alt="...">
     <div class="card-body">
         <p class="card-text"><span class="fw-bold">Name :</span> ${infoId.name}</p>
-        <p class="card-text"><span class="fw-bold">Release Date :</span> ${infoId.releaseDate}</p>
+        <p class="card-text"><span class="fw-bold">Release Date :</span> ${infoId.releaseDate!==''?infoId.releaseDate:'<span class="text-danger">not found</span>'}</p>
         <p class="card-text"><span class="fw-bold">Storage :</span> ${infoId.mainFeatures.storage}</p>
         <p class="card-text"><span class="fw-bold">Memory Capacity :</span> ${infoId.mainFeatures.memory}</p>
         <p class="card-text"><span class="fw-bold">Display :</span> ${infoId.mainFeatures.displaySize}</p>
+        <p class="card-text"><span class="fw-bold">Sensors :</span> ${infoId.mainFeatures.sensors}</p>
+        <p class="m-0"><span class="fw-bold">Others : </span></p>
+        <p class="card-text m-0"><span class="fw-bold"></span> ${infoId.others.WLAN}</p>
+        <p class="card-text m-0"><span class="fw-bold"></span> ${infoId.others.Bluetooth}</p>
+        <p class="card-text m-0"><span class="fw-bold"></span> ${infoId.others.GPS}</p>
+        <p class="card-text m-0"><span class="fw-bold"></span> ${infoId.others.USB}</p>
+
     </div>
     `
     detailsPhone.appendChild(div);

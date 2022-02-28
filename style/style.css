@@ -2,3 +2,6 @@
     width: 18rem;
     margin: auto;
 }
+#error-section{
+    display: none;
+}
