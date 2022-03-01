@@ -1,7 +1,13 @@
-
+// spinner function 
+const loadSpinner = spinnerStyle => {
+    document.getElementById('spinner').style.display = spinnerStyle;
+}
 const loadPhone = () => {
     const searchField = document.getElementById('input-field');
     const searchValue = searchField.value ;
+
+    // display spinner 
+    loadSpinner('block');
 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
     fetch(url)
@@ -20,6 +26,7 @@ const displayPhone = phones => {
     if(phones.length === 0){
         document.getElementById('error-section').style.display = 'block';
         detailsPhone.textContent = '';
+        loadSpinner('none');
     }
     // display function 
     else{
@@ -40,6 +47,7 @@ const displayPhone = phones => {
                   </div>
         `
         phoneContainer.appendChild(div);
+        loadSpinner('none');
     })
     }
 }
@@ -61,7 +69,7 @@ const displayDetails = infoId => {
     <img src="${infoId.image}" class="card-img-top" alt="...">
     <div class="card-body">
         <p class="card-text"><span class="fw-bold">Name :</span> ${infoId.name}</p>
-        <p class="card-text"><span class="fw-bold">Release Date :</span> ${infoId.releaseDate!==''?infoId.releaseDate:'<span class="text-danger">not found</span>'}</p>
+        <p class="card-text"><span class="fw-bold">Release Date :</span> ${infoId.releaseDate!==''?infoId.releaseDate:'<span class="text-danger fw-bold">not found</span>'}</p>
         <p class="card-text"><span class="fw-bold">Storage :</span> ${infoId.mainFeatures.storage}</p>
         <p class="card-text"><span class="fw-bold">Memory Capacity :</span> ${infoId.mainFeatures.memory}</p>
         <p class="card-text"><span class="fw-bold">Display :</span> ${infoId.mainFeatures.displaySize}</p>
