@@ -12,15 +12,13 @@
 </head>
 <body>
     <header class="container my-3">
-        <h1 class="text-center text-success">Mobile Garage</h1>
+        <h1 class="text-center fw-bold">Welcome to <span class="text-success" id="shop-name">Mobile Gadget</span></h1>
+        <div class="input-group my-3 mx-auto" id="search-box">
+            <input id="input-field" type="text" class="form-control" placeholder="search the phone you want" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="loadPhone()" class="btn btn-outline-secondary bg-success text-white" id="search-button" type="button" >Search</button>
+          </div>
     </header>
     <main class="container">
-        <section>
-            <div class="input-group my-3 w-50 mx-auto">
-                <input id="input-field" type="text" class="form-control" placeholder="search the phone you want" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button onclick="loadPhone()" class="btn btn-outline-secondary" type="button" >Search</button>
-              </div>
-        </section>
         <section>
             <!-- spinner section  -->
             <div id="spinner">
@@ -30,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- error handle section  -->
             <div id="error-section" class="text-center text-danger">
                 <h1>No result found</h1>

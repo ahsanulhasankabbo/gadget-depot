@@ -1,10 +1,29 @@
+/* spinner  */
+#spinner{
+    display: none;
+}
+/* error  */
+#error-section{
+    display: none;
+}
+/* details  */
 .phone-details{
     width: 18rem;
     margin: auto;
 }
-#error-section{
-    display: none;
+
+/* desktop  */
+@media only screen and (min-width: 768px){
+    #search-box{
+        width: 65%;
+    }
 }
-#spinner{
-    display: none;
+/* mobile  */
+@media only screen and (max-width: 768px) {
+    #search-box{
+        width: 100%;
+    }
+    #shop-name{
+        display: block;
+    }
 }
